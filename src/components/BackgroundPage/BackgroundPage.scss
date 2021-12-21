@@ -1,0 +1,35 @@
+.BackgroundPage {
+  background: linear-gradient(
+    235.48deg,
+    #01baef 0%,
+    #00a8e8 28.44%,
+    #163045 52.6%,
+    #210124 77.4%,
+    #210124 100%
+  );
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.BackgroundPage-content {
+  background-color: #fff;
+  border-radius: 20px;
+  width: fit-content;
+  height: fit-content;
+  padding: 2rem;
+  gap: 30px;
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .body {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

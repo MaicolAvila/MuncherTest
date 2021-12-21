@@ -1,0 +1,43 @@
+.Home {
+  gap: 30px;
+  display: flex;
+  .header {
+    .title {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.125rem;
+      /* identical to box height */
+
+      text-align: start;
+
+      color: #455561;
+    }
+  }
+  .body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 300px;
+    .col {
+      .title {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1rem;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #000000;
+      }
+      .list {
+        overflow-y: auto;
+      }
+    }
+  }
+  .footer {
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,42 @@
+.App {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn1 {
+  background: linear-gradient(
+    91.82deg,
+    #20a4f3 0.54%,
+    rgba(32, 164, 243, 0.56) 97.64%
+  );
+  font-size: 1.125rem;
+  color: #fff;
+  border-radius: 1em;
+  border: none;
+  padding: 0.45em 1.75em;
+  transition: all 500ms ease-in-out;
+  font-family: "Roboto";
+}
+.btn1:hover {
+  padding: 0.65em 2.45em;
+}
