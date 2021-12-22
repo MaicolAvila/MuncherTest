@@ -15,30 +15,29 @@
     }
   }
   .body {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     min-width: 300px;
-    gap: 30px;
-    .col {
-      .title {
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: bold;
-        font-size: 1rem;
-        /* identical to box height */
+    .title {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1rem;
+      /* identical to box height */
 
-        text-align: center;
+      text-align: center;
 
-        color: #000000;
-      }
-      .list {
-        overflow-y: auto;
-      }
+      color: #000000;
+    }
+    .list {
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
     }
   }
   .footer {
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    gap: 20px;
   }
 }

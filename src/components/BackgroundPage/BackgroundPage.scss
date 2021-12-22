@@ -22,6 +22,8 @@
   height: fit-content;
   padding: 2rem;
   gap: 30px;
+  max-height: 90vh;
+  max-width: 80vw;
   .header {
     display: flex;
     flex-direction: column;

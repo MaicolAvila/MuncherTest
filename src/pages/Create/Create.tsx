@@ -7,16 +7,18 @@ import { nanoid } from "nanoid";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
-import { db, logout } from "../../firebase";
+import { db, logout, storage } from "../../firebase";
 
 export default function Create() {
+  const [ref, setRef] = useState<any>();
   const [content, setContent] = useState<Omit<Product, "id">>({
     name: "",
     description: "",
     precio: "",
+    images: "",
   });
 
-  const [Imagen, setImagen] = useState();
+  const [Imagen, setImagen] = useState<File>();
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -25,14 +27,13 @@ export default function Create() {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
-  const changeImagen = (e: any) => {
-    setImagen(e.target.files[0]);
-    console.log(Imagen);
+  const changeImagen = async (e: any) => {
+    await setImagen(e.target.files[0]);
   };
 
   const setProduct = useSetRecoilState(productContentState);
 
-  const addDeveloper: FormEventHandler<HTMLFormElement> = async (e) => {
+  const addProduct: FormEventHandler<HTMLFormElement> = async (e) => {
     console.log(error);
     e.preventDefault();
     // if (content.name.length > 0) {
@@ -49,21 +50,29 @@ export default function Create() {
     //   }, 2000);
     // }
     try {
-      const newProduct: Product = {
-        id: nanoid(),
-        name: content.name,
-        description: content.description,
-        precio: content.precio,
-      };
-      await db.collection("products").add(newProduct);
-      history.replace("/");
+      console.log(Imagen);
+      if (Imagen) {
+        const newRef = storage.ref(`images`).child(Imagen.name);
+        await setRef(newRef);
+        await newRef.put(Imagen);
+        let urlImagen = await newRef.getDownloadURL();
+        const newProduct: Product = {
+          id: nanoid(),
+          name: content.name,
+          description: content.description,
+          precio: content.precio,
+          images: urlImagen,
+        };
+        await db.collection("products").add(newProduct);
+        history.replace("/");
+      }
     } catch (err) {
       // Error handling
       console.log(err);
     }
   };
   return (
-    <form className="Create column" onSubmit={addDeveloper}>
+    <form className="Create column" onSubmit={addProduct}>
       <div className="header">
         <div className="title">Crear Producto</div>
       </div>

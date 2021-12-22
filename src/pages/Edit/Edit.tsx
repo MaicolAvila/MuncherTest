@@ -20,6 +20,7 @@ export default function Edit(props: any) {
     name: "",
     description: "",
     precio: "",
+    images: "",
   });
 
   const [error, setError] = useState(false);

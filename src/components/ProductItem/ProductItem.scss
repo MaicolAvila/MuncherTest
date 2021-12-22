@@ -11,6 +11,9 @@
 
   color: #455561;
   justify-content: space-between;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }

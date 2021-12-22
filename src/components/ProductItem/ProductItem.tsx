@@ -11,8 +11,8 @@ import { db } from "../../firebase";
 import { Console } from "console";
 
 export default function ProductItem(props: Product) {
-  const { name, id } = props;
-  
+  const { name, id, description, precio, images } = props;
+
   const [product, setProduct] = useRecoilState(productContentState);
 
   const deleteTodo = async () => {
@@ -31,10 +31,16 @@ export default function ProductItem(props: Product) {
   return (
     <div className="DeveloperItem">
       <div className="content-name">
-        <div>{props.name}</div>
+        <div>{name}</div>
+      </div>
+      <div>
+        <img src={images} style={{ maxWidth: "200px" }} alt="" />
+      </div>
+      <div>
+        <div style={{ maxHeight: "100px" }}>{description}</div>
       </div>
       <div className="content-icons">
-        <Link to={`/update/${props.id}`}>
+        <Link to={`/update/${id}`}>
           <IcoEdit style={{ cursor: "pointer" }} />
         </Link>
         <IcoDelete style={{ cursor: "pointer" }} onClick={deleteTodo} />
