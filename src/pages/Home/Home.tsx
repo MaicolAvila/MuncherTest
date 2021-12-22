@@ -1,35 +1,31 @@
-import React from "react";
+import { useEffect } from "react";
 import "./Home.scss";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
-import { developerContentState } from "../../state/developerState";
-import DeveloperItem from "../../components/DeveloperItem/DeveloperItem";
+import DeveloperItem from "../../components/ProductItem/ProductItem";
+import { productContentState } from "../../state/productState";
+import { db } from "../../firebase";
+import Product from "../../types/product";
 
 export default function Home() {
-  const developers = useRecoilValue(developerContentState);
+  const [products, setProducts] = useRecoilState(productContentState);
+  useEffect(() => {
+    db.collection("products").onSnapshot((snapshot: any) => {
+      const products = snapshot.docs.map((doc: any) => doc.data()) as Product[];
+      setProducts(products);
+    });
+  }, [setProducts]);
   return (
     <div className="Home column">
       <div className="header">
-        <div className="title">Lista de desarrolladores</div>
+        <div className="title">Lista de productos</div>
       </div>
       <div className="column body">
-        <div className="frontends col column">
-          <div className="title">Frontends</div>
+        <div className="frontends  column">
+          <div className="title">Products</div>
           <div className="list">
-            {developers.map((dev) => {
-              if (dev.rol === "Fronted") {
-                return <DeveloperItem key={dev.id} {...dev} />;
-              }
-            })}
-          </div>
-        </div>
-        <div className="backends col column">
-          <div className="title">Backends</div>
-          <div className="list">
-            {developers.map((dev) => {
-              if (dev.rol === "Backend") {
-                return <DeveloperItem key={dev.id} {...dev} />;
-              }
+            {products.map((product) => {
+              return <DeveloperItem key={product.id} {...product} />;
             })}
           </div>
         </div>

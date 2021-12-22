@@ -4,14 +4,17 @@ import "./Create.scss";
 import { useSetRecoilState } from "recoil";
 
 import { nanoid } from "nanoid";
-import Developer from "../../types/developer";
 import { developerContentState } from "../../state/developerState";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
+import Product from "../../types/product";
+import { productContentState } from "../../state/productState";
 
 export default function Create() {
-  const [content, setContent] = useState<Omit<Developer, "id">>({
-    rol: "",
+  const [content, setContent] = useState<Omit<Product, "id">>({
     name: "",
+    description: "",
+    precio: "",
+    images: "",
   });
 
   const [error, setError] = useState(false);
@@ -24,16 +27,13 @@ export default function Create() {
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const setDeveloper = useSetRecoilState(developerContentState);
+  const setProduct = useSetRecoilState(productContentState);
 
   const addDeveloper: FormEventHandler<HTMLFormElement> = (e) => {
     console.log(error);
     e.preventDefault();
-    if (content.name.length > 0 && content.rol.length > 0) {
-      setDeveloper((developers) => [
-        ...developers,
-        { ...content, id: nanoid() },
-      ]);
+    if (content.name.length > 0) {
+      setProduct((developers) => [...developers, { ...content, id: nanoid() }]);
       setError(false);
       setSuccess(true);
       setTimeout(() => {
@@ -63,19 +63,22 @@ export default function Create() {
           />
         </div>
         <div className="input-div">
-          <label className="title">Rol</label>
-          <select
-            id="rol"
+          <label className="title">descripcion</label>
+          <input
+            id="description"
             className="input"
-            onChange={selectRol}
-            value={content.rol}
-          >
-            <option value="" selected disabled hidden>
-              Escoje el rol
-            </option>
-            <option value="Fronted">Desarrolador Fronted</option>
-            <option value="Backend">Desarrolador Backend</option>
-          </select>
+            onChange={handleChange}
+            value={content.description}
+          />
+        </div>
+        <div className="input-div">
+          <label className="title">Precio</label>
+          <input
+            id="precio"
+            className="input"
+            onChange={handleChange}
+            value={content.precio}
+          />
         </div>
       </div>
       <div className="footer row">
