@@ -36,7 +36,42 @@
   padding: 0.45em 1.75em;
   transition: all 500ms ease-in-out;
   font-family: "Roboto";
+  text-decoration: none;
 }
 .btn1:hover {
   padding: 0.65em 2.45em;
+}
+.btn2 {
+  background: linear-gradient(
+    91.82deg,
+    #210124 0.54%,
+    rgba(33, 1, 36, 0.56) 97.64%
+  );
+  font-size: 1.125rem;
+  color: #fff;
+  border-radius: 1em;
+  border: none;
+  padding: 0.45em 1.75em;
+  transition: all 500ms ease-in-out;
+  font-family: "Roboto";
+  text-decoration: none;
+  text-align: center;
+}
+.btn2:hover {
+  padding: 0.65em 2.45em;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.input {
+  padding: 0.45em 1.75em;
+  width: -webkit-fill-available;
+  border: 1px solid #455561;
+  border-radius: 1em;
+  outline: none;
+  fill: #455561;
+  color: #455561;
 }

@@ -1,0 +1,16 @@
+.DeveloperItem {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #455561;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}

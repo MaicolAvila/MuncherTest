@@ -17,7 +17,8 @@
   .body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 300px;
+    min-width: 300px;
+    gap: 30px;
     .col {
       .title {
         font-family: "Roboto";
