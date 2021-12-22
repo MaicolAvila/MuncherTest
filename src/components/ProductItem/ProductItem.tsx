@@ -29,17 +29,17 @@ export default function ProductItem(props: Product) {
   };
 
   return (
-    <div className="DeveloperItem">
+    <div className="ProductItem">
       <div className="content-name">
         <div>{name}</div>
       </div>
       <div>
-        <img src={images} style={{ maxWidth: "200px" }} alt="" />
+        <img src={images} style={{ width: "100%" }} alt="" />
       </div>
       <div>
         <div style={{ maxHeight: "100px" }}>{description}</div>
       </div>
-      <div className="content-icons">
+      <div className="content-icons row">
         <Link to={`/update/${id}`}>
           <IcoEdit style={{ cursor: "pointer" }} />
         </Link>
