@@ -6,6 +6,7 @@ import { useSetRecoilState } from "recoil";
 import { nanoid } from "nanoid";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
+import Images from "../../types/images";
 import { productContentState } from "../../state/productState";
 import { db, logout, storage } from "../../firebase";
 

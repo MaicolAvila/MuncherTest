@@ -12,6 +12,7 @@ import { nanoid } from "nanoid";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
+import { db } from "../../firebase";
 
 export default function Edit(props: any) {
   const developers = useRecoilValue(productContentState);
@@ -36,20 +37,20 @@ export default function Edit(props: any) {
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const selectRol: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
-
   const setDeveloper = useSetRecoilState(productContentState);
 
-  const editDeveloper: FormEventHandler<HTMLFormElement> = (e) => {
+  const editDeveloper: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (content.name.length > 0) {
       const outputs = developers.filter(
         (dev) => dev.id !== props.match.params.id
       );
       setDeveloper(() => [...outputs, { ...content }]);
-
+      const colect = await db.collection("products").get();
+      const product = colect.docs.find(
+        (doc) => doc.data().id === props.match.params.id
+      );
+      if (product) db.collection("products").doc(product.id).update(content);
       setError(false);
       setSuccess(true);
       setTimeout(() => {
@@ -86,6 +87,16 @@ export default function Edit(props: any) {
             className="input"
             onChange={handleChange}
             value={content.description}
+          />
+        </div>
+        <div className="input-div">
+          <label className="title">Precio</label>
+          <input
+            id="precio"
+            className="input"
+            onChange={handleChange}
+            value={content.precio}
+            type="number"
           />
         </div>
       </div>

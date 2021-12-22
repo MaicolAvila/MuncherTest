@@ -17,12 +17,9 @@ export default function ProductItem(props: Product) {
 
   const deleteTodo = async () => {
     try {
-      await db.collection("products").onSnapshot((snapshot: any) => {
-        const proc = snapshot.docs.find((doc: any) => doc.data().id === id);
-        if (proc && proc.id) {
-          db.collection("products").doc(proc.id).delete();
-        }
-      });
+      const colect = await db.collection("products").get();
+      const product = colect.docs.find((doc) => doc.data().id === id);
+      if (product) db.collection("products").doc(product.id).delete();
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +31,13 @@ export default function ProductItem(props: Product) {
         <div>{name}</div>
       </div>
       <div>
-        <img src={images} style={{ width: "100%" }} alt="" />
+        {/* {images.map((img) => {
+          <img src={img.url} style={{ width: "100%" }} alt="" />;
+        })} */}
+        <img src={images} style={{ width: "100%" }} alt="" />;
+      </div>
+      <div>
+        <div style={{ maxHeight: "100px" }}>{precio} COP</div>
       </div>
       <div>
         <div style={{ maxHeight: "100px" }}>{description}</div>
