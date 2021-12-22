@@ -1,15 +1,10 @@
-import React, { useState, useEffect, FormEventHandler } from "react";
-import { Link, useHistory } from "react-router-dom";
-import {
-  auth,
-  signInWithEmailAndPassword,
-  signInWithGoogle,
-} from "../../firebase";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRecoilState } from "recoil";
-import authState from "../../state/authState";
+import { useHistory, Link } from "react-router-dom";
+import { auth, registerWithEmailAndPassword } from "../../firebase";
 
-export default function SignIn() {
+export default function SignUp() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
@@ -26,15 +21,26 @@ export default function SignIn() {
   const login: FormEventHandler<HTMLFormElement> = (e) => {
     console.log(error);
     e.preventDefault();
-    signInWithEmailAndPassword(email, password);
+    registerWithEmailAndPassword(name, email, password);
   };
 
   return (
     <form className="Create column" onSubmit={login}>
       <div className="header">
-        <div className="title">Login</div>
+        <div className="title">Registrar</div>
       </div>
       <div className="column body">
+        <div className="input-div">
+          <label className="title">Nombre</label>
+          <input
+            className="input"
+            id="name"
+            type="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
         <div className="input-div">
           <label className="title">Email</label>
           <input
@@ -60,10 +66,10 @@ export default function SignIn() {
       </div>
       <div className="footer row">
         <button className="btn1" type="submit">
-          Login
+          Crear Cuenta
         </button>
-        <Link to="/signUp" className="btn2">
-          Registrarse
+        <Link to="/signIn" className="btn2">
+          Iniciar sesion
         </Link>
       </div>
     </form>
