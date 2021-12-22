@@ -22,7 +22,6 @@ export default function Home() {
       </div>
       <div className="column body">
         <div className="frontends  column">
-          <div className="title">Products</div>
           <div className="list">
             {products.map((product) => {
               return <DeveloperItem key={product.id} {...product} />;

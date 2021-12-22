@@ -1,5 +1,5 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Create.scss";
 import { useSetRecoilState } from "recoil";
 
@@ -20,6 +20,7 @@ export default function Create() {
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const history = useHistory();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -55,6 +56,7 @@ export default function Create() {
         precio: content.precio,
       };
       await db.collection("products").add(newProduct);
+      history.replace("/");
     } catch (err) {
       // Error handling
       console.log(err);
