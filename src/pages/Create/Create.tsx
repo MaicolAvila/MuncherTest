@@ -4,7 +4,6 @@ import "./Create.scss";
 import { useSetRecoilState } from "recoil";
 
 import { nanoid } from "nanoid";
-import { developerContentState } from "../../state/developerState";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
@@ -58,7 +57,7 @@ export default function Create() {
       await db.collection("products").add(newProduct);
     } catch (err) {
       // Error handling
-      console.log(err)
+      console.log(err);
     }
   };
   return (

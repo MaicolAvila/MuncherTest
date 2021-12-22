@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 import "./ProductItem.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as IcoDelete } from "../../assets/icons/delete-ico.svg";
 import { ReactComponent as IcoEdit } from "../../assets/icons/edit-ico.svg";
-import { developerContentState } from "../../state/developerState";
 import Product from "../../types/product";
+import { productContentState } from "../../state/productState";
+import { db } from "../../firebase";
+import { Console } from "console";
 
 export default function ProductItem(props: Product) {
   const { name, id } = props;
-  //   const [isComplete, setIsComplete] = useRecoilState(
-  //     todoCompleteState(props.id)
-  //   );
-  const setProduct = useSetRecoilState(developerContentState);
-  //   const toggleComplete = () => setIsComplete((prevState) => !prevState);
-  const deleteTodo = () =>
-    setProduct((product) => product.filter((product) => product.id !== id));
+  
+  const [product, setProduct] = useRecoilState(productContentState);
+
+  const deleteTodo = async () => {
+    try {
+      await db.collection("products").onSnapshot((snapshot: any) => {
+        const proc = snapshot.docs.find((doc: any) => doc.data().id === id);
+        if (proc && proc.id) {
+          db.collection("products").doc(proc.id).delete();
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="DeveloperItem">
       <div className="content-name">

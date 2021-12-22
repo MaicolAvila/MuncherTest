@@ -9,16 +9,17 @@ import "./Edit.scss";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 
 import { nanoid } from "nanoid";
-import Developer from "../../types/developer";
-import { developerContentState } from "../../state/developerState";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
+import Product from "../../types/product";
+import { productContentState } from "../../state/productState";
 
 export default function Edit(props: any) {
-  const developers = useRecoilValue(developerContentState);
-  const [content, setContent] = useState<Developer>({
+  const developers = useRecoilValue(productContentState);
+  const [content, setContent] = useState<Product>({
     id: "",
-    rol: "",
     name: "",
+    description: "",
+    precio: "",
   });
 
   const [error, setError] = useState(false);
@@ -38,11 +39,11 @@ export default function Edit(props: any) {
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const setDeveloper = useSetRecoilState(developerContentState);
+  const setDeveloper = useSetRecoilState(productContentState);
 
   const editDeveloper: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (content.name.length > 0 && content.rol.length > 0) {
+    if (content.name.length > 0) {
       const outputs = developers.filter(
         (dev) => dev.id !== props.match.params.id
       );
@@ -78,20 +79,13 @@ export default function Edit(props: any) {
           />
         </div>
         <div className="input-div">
-          <label className="title">Rol</label>
-          <select
-            id="rol"
+          <label className="title">Descripcion</label>
+          <input
+            id="description"
             className="input"
-            onChange={selectRol}
-            value={content.rol}
-            defaultValue="Fronted"
-          >
-            <option value="" selected disabled hidden>
-              Escoje el rol
-            </option>
-            <option value="Fronted">Desarrolador Fronted</option>
-            <option value="Backend">Desarrolador Backend</option>
-          </select>
+            onChange={handleChange}
+            value={content.description}
+          />
         </div>
       </div>
       <div className="footer row">
