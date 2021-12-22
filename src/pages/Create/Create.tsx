@@ -8,15 +8,16 @@ import { developerContentState } from "../../state/developerState";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
-import { logout } from "../../firebase";
+import { db, logout } from "../../firebase";
 
 export default function Create() {
   const [content, setContent] = useState<Omit<Product, "id">>({
     name: "",
     description: "",
     precio: "",
-    images: "",
   });
+
+  const [Imagen, setImagen] = useState();
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -24,40 +25,52 @@ export default function Create() {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
-  const selectRol: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  const changeImagen = (e: any) => {
+    setImagen(e.target.files[0]);
+    console.log(Imagen);
   };
 
   const setProduct = useSetRecoilState(productContentState);
 
-  const addDeveloper: FormEventHandler<HTMLFormElement> = (e) => {
+  const addDeveloper: FormEventHandler<HTMLFormElement> = async (e) => {
     console.log(error);
     e.preventDefault();
-    if (content.name.length > 0) {
-      setProduct((developers) => [...developers, { ...content, id: nanoid() }]);
-      setError(false);
-      setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-      }, 2000);
-    } else {
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 2000);
+    // if (content.name.length > 0) {
+    //   setProduct((developers) => [...developers, { ...content, id: nanoid() }]);
+    //   setError(false);
+    //   setSuccess(true);
+    //   setTimeout(() => {
+    //     setSuccess(false);
+    //   }, 2000);
+    // } else {
+    //   setError(true);
+    //   setTimeout(() => {
+    //     setError(false);
+    //   }, 2000);
+    // }
+    try {
+      const newProduct: Product = {
+        id: nanoid(),
+        name: content.name,
+        description: content.description,
+        precio: content.precio,
+      };
+      await db.collection("products").add(newProduct);
+    } catch (err) {
+      // Error handling
+      console.log(err)
     }
   };
   return (
     <form className="Create column" onSubmit={addDeveloper}>
       <div className="header">
-        <div className="title">Crear Desarrollador</div>
+        <div className="title">Crear Producto</div>
       </div>
       <div className="column body">
         <div className="input-div">
           <label className="title">Nombre</label>
           <input
             className="input"
-            placeholder="Ejemplo Maicol..."
             onChange={handleChange}
             value={content.name}
             id="name"
@@ -77,9 +90,14 @@ export default function Create() {
           <input
             id="precio"
             className="input"
+            type="number"
             onChange={handleChange}
             value={content.precio}
           />
+        </div>
+        <div className="input-div">
+          <label className="title">Seleccionar imagen</label>
+          <input type="file" name="imagen" onChange={changeImagen} />
         </div>
       </div>
       <div className="footer row">

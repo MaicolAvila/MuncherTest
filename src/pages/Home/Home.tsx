@@ -4,7 +4,7 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 import DeveloperItem from "../../components/ProductItem/ProductItem";
 import { productContentState } from "../../state/productState";
-import { db } from "../../firebase";
+import { db, logout } from "../../firebase";
 import Product from "../../types/product";
 
 export default function Home() {
@@ -34,6 +34,9 @@ export default function Home() {
         <Link to="/add" className="btn1">
           Crear
         </Link>
+        <button onClick={logout} className="btn2">
+          SignOut
+        </button>
       </div>
     </div>
   );
