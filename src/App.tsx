@@ -16,13 +16,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 import AuthGuard from "./components/AuthGuard/AuthGuard";
 import SignUp from "./pages/SignUp/SignUp";
+import NavUser from "./components/NavUser/NavUser";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <BackgroundPage>
-          <Switch>
+        <Switch>
+          <BackgroundPage>
             <AuthGuard>
               <Route exact path="/" component={Home} />
               <Route exact path="/add" component={Create} />
@@ -30,8 +31,8 @@ function App() {
               <Route exact path="/signIn" component={SignIn} />
               <Route exact path="/signUp" component={SignUp} />
             </AuthGuard>
-          </Switch>
-        </BackgroundPage>
+          </BackgroundPage>
+        </Switch>
       </Router>
     </div>
   );

@@ -33,9 +33,6 @@ export default function Home() {
         <Link to="/add" className="btn1">
           Crear
         </Link>
-        <button onClick={logout} className="btn2">
-          SignOut
-        </button>
       </div>
     </div>
   );

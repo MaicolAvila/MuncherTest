@@ -118,9 +118,6 @@ export default function Create() {
         <Link to="/" className="btn2">
           Ver
         </Link>
-        <button onClick={logout} className="btn1">
-          SignOut
-        </button>
       </div>
       {error ? <WarningMessage title="Faltan datos" type="error" /> : null}
       {success ? (
