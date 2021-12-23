@@ -2,7 +2,8 @@ import React, { FormEventHandler, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory, Link } from "react-router-dom";
 import { auth, registerWithEmailAndPassword } from "../../firebase";
-import "./SignUp.scss"
+import { BlueButton, Input, Label, VioletLink } from "../../styles/styles";
+import "./SignUp.scss";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -32,8 +33,8 @@ export default function SignUp() {
       </div>
       <div className="column body">
         <div className="input-div">
-          <label className="title">Nombre</label>
-          <input
+          <Label className="title">Nombre</Label>
+          <Input
             className="input"
             id="name"
             type="name"
@@ -43,8 +44,8 @@ export default function SignUp() {
           />
         </div>
         <div className="input-div">
-          <label className="title">Email</label>
-          <input
+          <Label className="title">Email</Label>
+          <Input
             className="input"
             id="email"
             type="email"
@@ -54,8 +55,8 @@ export default function SignUp() {
           />
         </div>
         <div className="input-div">
-          <label className="title">password</label>
-          <input
+          <Label className="title">password</Label>
+          <Input
             id="password"
             className="input"
             type="password"
@@ -66,12 +67,8 @@ export default function SignUp() {
         </div>
       </div>
       <div className="footer row">
-        <button className="btn1" type="submit">
-          Crear Cuenta
-        </button>
-        <Link to="/signIn" className="btn2">
-          Iniciar sesion
-        </Link>
+        <BlueButton type="submit">Crear Cuenta</BlueButton>
+        <VioletLink to="/signIn">Iniciar sesion</VioletLink>
       </div>
     </form>
   );

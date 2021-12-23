@@ -1,35 +1,24 @@
-.NavUser {
-  background-color: #fff;
-  border-radius: 20px;
-  width: fit-content;
-  height: 60px;
-  padding: 1rem 3rem;
-
-  justify-content: space-between;
+.user-content {
   align-items: center;
-  gap: 40px;
-  .user-content {
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
+  justify-content: flex-start;
+  gap: 20px;
 
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.125rem;
-    /* identical to box height */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  /* identical to box height */
 
-    color: #210124;
+  color: #210124;
+}
+.logout-content {
+  justify-content: center;
+  align-items: center;
+  .logout-ico {
+    cursor: pointer;
+    transition: all 500ms linear;
   }
-  .logout-content {
-    justify-content: center;
-    align-items: center;
-    .logout-ico {
-      cursor: pointer;
-      transition: all 500ms linear;
-    }
-    .logout-ico:hover {
-      transform: scale(1.2);
-    }
+  .logout-ico:hover {
+    transform: scale(1.2);
   }
 }

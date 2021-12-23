@@ -9,6 +9,7 @@ import Product from "../../types/product";
 import Images from "../../types/images";
 import { productContentState } from "../../state/productState";
 import { db, logout, storage } from "../../firebase";
+import { BlueButton, Label, Title } from "../../styles/styles";
 
 export default function Create() {
   const [ref, setRef] = useState<any>();
@@ -75,11 +76,11 @@ export default function Create() {
   return (
     <form className="Create column" onSubmit={addProduct}>
       <div className="header">
-        <div className="title">Crear Producto</div>
+        <Title>Crear Producto</Title>
       </div>
       <div className="column body">
         <div className="input-div">
-          <label className="title">Nombre</label>
+          <Label>Nombre</Label>
           <input
             className="input"
             onChange={handleChange}
@@ -88,7 +89,7 @@ export default function Create() {
           />
         </div>
         <div className="input-div">
-          <label className="title">descripcion</label>
+          <Label>descripcion</Label>
           <input
             id="description"
             className="input"
@@ -97,7 +98,7 @@ export default function Create() {
           />
         </div>
         <div className="input-div">
-          <label className="title">Precio</label>
+          <Label>Precio</Label>
           <input
             id="precio"
             className="input"
@@ -107,14 +108,12 @@ export default function Create() {
           />
         </div>
         <div className="input-div">
-          <label className="title">Seleccionar imagen</label>
+          <Label>Seleccionar imagen</Label>
           <input type="file" name="imagen" onChange={changeImagen} />
         </div>
       </div>
       <div className="footer row">
-        <button className="btn1" type="submit">
-          Crear
-        </button>
+        <BlueButton type="submit">Crear</BlueButton>
         <Link to="/" className="btn2">
           Ver
         </Link>

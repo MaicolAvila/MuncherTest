@@ -14,5 +14,5 @@ export default function AuthGuard(props: any) {
     }
     if (!user) history.replace("/signIn");
   }, [user, loading]);
-  return <div>{props.children}</div>;
+  return <>{props.children}</>;
 }

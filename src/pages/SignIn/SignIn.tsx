@@ -9,6 +9,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState } from "recoil";
 import authState from "../../state/authState";
 import "./SignIn.scss";
+import {
+  BlueButton,
+  Input,
+  Label,
+  Title,
+  VioletLink,
+} from "../../styles/styles";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -33,13 +40,12 @@ export default function SignIn() {
   return (
     <form className="SignIn column" onSubmit={login}>
       <div className="header">
-        <div className="title">Login</div>
+        <Title>Login</Title>
       </div>
       <div className="column body">
         <div className="input-div">
-          <label className="title">Email</label>
-          <input
-            className="input"
+          <Label>Email</Label>
+          <Input
             id="email"
             type="email"
             name="email"
@@ -48,10 +54,9 @@ export default function SignIn() {
           />
         </div>
         <div className="input-div">
-          <label className="title">password</label>
-          <input
+          <Label>password</Label>
+          <Input
             id="password"
-            className="input"
             type="password"
             name="password"
             value={password}
@@ -60,12 +65,8 @@ export default function SignIn() {
         </div>
       </div>
       <div className="footer row">
-        <button className="btn1" type="submit">
-          Login
-        </button>
-        <Link to="/signUp" className="btn2">
-          Registrarse
-        </Link>
+        <BlueButton type="submit">Login</BlueButton>
+        <VioletLink to="/signUp">Registrarse</VioletLink>
       </div>
     </form>
   );
