@@ -119,3 +119,21 @@ export const BlueLink = styled(LinkStyle)`
     rgba(32, 164, 243, 0.56) 97.64%
   );
 `;
+
+export const List = styled.div`
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 30px;
+  @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 10px;
+    gap: 10px;
+  }
+  @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 15px;
+    gap: 15px;
+  }
+`;

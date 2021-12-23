@@ -6,6 +6,7 @@ import DeveloperItem from "../../components/ProductItem/ProductItem";
 import { productContentState } from "../../state/productState";
 import { db, logout } from "../../firebase";
 import Product from "../../types/product";
+import { BlueLink, List, Title } from "../../styles/styles";
 
 export default function Home() {
   const [products, setProducts] = useRecoilState(productContentState);
@@ -18,21 +19,21 @@ export default function Home() {
   return (
     <div className="Home column">
       <div className="header">
-        <div className="title">Lista de productos</div>
+        <Title>Lista de productos</Title>
       </div>
       <div className="column body">
         <div className="frontends  column">
-          <div className="list">
+          <List>
             {products.map((product) => {
               return <DeveloperItem key={product.id} {...product} />;
             })}
-          </div>
+          </List>
         </div>
       </div>
       <div className="footer row">
-        <Link to="/add" className="btn1">
+        <BlueLink to="/add" className="btn1">
           Crear
-        </Link>
+        </BlueLink>
       </div>
     </div>
   );
