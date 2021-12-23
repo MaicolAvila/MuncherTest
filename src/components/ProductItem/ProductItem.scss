@@ -17,12 +17,47 @@
   align-items: center;
   flex-direction: column;
   width: 300px;
-  .content-name {
-    width: 100%;
-    text-align: start;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 15px #c5c5c5;
+  border-radius: 20px;
+  cursor: pointer;
+  .content-image {
+    padding: 20px;
   }
-  .content-icons {
+  .line {
+    height: 1px;
     width: 100%;
-    justify-content: space-around;
+    background-color: #c5c5c5;
+  }
+  .content-description {
+    padding: 10px 2rem;
+    width: -webkit-fill-available;
+    justify-content: space-between;
+    align-items: flex-start;
+    .precio {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: bold;
+      font-size: 1.125rem;
+
+      color: #8a8a8a;
+    }
+    .name {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      /* identical to box height */
+      opacity: 0.1;
+      color: #455561;
+      transition: all 500ms ease-in-out;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.ProductItem:hover {
+  .name {
+    opacity: 0.8;
   }
 }

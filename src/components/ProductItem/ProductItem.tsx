@@ -26,28 +26,15 @@ export default function ProductItem(props: Product) {
   };
 
   return (
-    <div className="ProductItem">
-      <div className="content-name">
-        <div>{name}</div>
+    <Link to={`/update/${id}`} className="ProductItem">
+      <div className="content-image">
+        <img src={images} style={{ width: "100%" }} alt="" />
       </div>
-      <div>
-        {/* {images.map((img) => {
-          <img src={img.url} style={{ width: "100%" }} alt="" />;
-        })} */}
-        <img src={images} style={{ width: "100%" }} alt="" />;
+      <div className="line"></div>
+      <div className="content-description column">
+        <div className="precio">$ {precio}</div>
+        <div className="name">{name}</div>
       </div>
-      <div>
-        <div style={{ maxHeight: "100px" }}>{precio} COP</div>
-      </div>
-      <div>
-        <div style={{ maxHeight: "100px" }}>{description}</div>
-      </div>
-      <div className="content-icons row">
-        <Link to={`/update/${id}`}>
-          <IcoEdit style={{ cursor: "pointer" }} />
-        </Link>
-        <IcoDelete style={{ cursor: "pointer" }} onClick={deleteTodo} />
-      </div>
-    </div>
+    </Link>
   );
 }
