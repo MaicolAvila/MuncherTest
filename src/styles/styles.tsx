@@ -1,10 +1,16 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const breakpoint_latop_1024 = "1024px";
 export const breakpoint_iPad = "768px";
 export const breakpoint_mobile_big = "600px";
 export const breakpoint_mobile_small = "500px";
+
+createGlobalStyle`
+    *{
+        font-family: "Roboto";      
+    }
+`;
 
 export const Button = styled.button`
   font-size: 18px;
@@ -14,6 +20,7 @@ export const Button = styled.button`
   padding: 0.45em 1.75em;
   transition: all 500ms ease-in-out;
   font-family: "Roboto";
+  box-shadow: 0px 0px 15px #a8a8a8;
   &:hover {
     padding: 0.65em 2.45em;
   }
@@ -92,6 +99,7 @@ export const LinkStyle = styled(Link)`
   padding: 0.45em 1.75em;
   transition: all 500ms ease-in-out;
   font-family: "Roboto";
+  box-shadow: 0px 0px 15px #a8a8a8;
   &:hover {
     padding: 0.65em 2.45em;
   }
@@ -127,9 +135,11 @@ export const List = styled.div`
   gap: 30px;
   padding: 30px;
   @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
-    grid-template-columns: repeat(1, 1fr);
     padding: 10px;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    align-items: center;
   }
   @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
     grid-template-columns: repeat(1, 1fr);

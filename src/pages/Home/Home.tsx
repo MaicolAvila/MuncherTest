@@ -22,13 +22,11 @@ export default function Home() {
         <Title>Lista de productos</Title>
       </div>
       <div className="column body">
-        <div className="frontends  column">
-          <List>
-            {products.map((product) => {
-              return <DeveloperItem key={product.id} {...product} />;
-            })}
-          </List>
-        </div>
+        <List>
+          {products.map((product) => {
+            return <DeveloperItem key={product.id} {...product} />;
+          })}
+        </List>
       </div>
       <div className="footer row">
         <BlueLink to="/add" className="btn1">

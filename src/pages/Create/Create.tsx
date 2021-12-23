@@ -9,7 +9,7 @@ import Product from "../../types/product";
 import Images from "../../types/images";
 import { productContentState } from "../../state/productState";
 import { db, logout, storage } from "../../firebase";
-import { BlueButton, Label, Title } from "../../styles/styles";
+import { BlueButton, Label, Title, VioletLink } from "../../styles/styles";
 
 export default function Create() {
   const [ref, setRef] = useState<any>();
@@ -114,9 +114,7 @@ export default function Create() {
       </div>
       <div className="footer row">
         <BlueButton type="submit">Crear</BlueButton>
-        <Link to="/" className="btn2">
-          Ver
-        </Link>
+        <VioletLink to="/">Ver</VioletLink>
       </div>
       {error ? <WarningMessage title="Faltan datos" type="error" /> : null}
       {success ? (

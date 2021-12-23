@@ -13,6 +13,7 @@ import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
 import { db } from "../../firebase";
+import { BlueButton, VioletButton } from "../../styles/styles";
 
 export default function Edit(props: any) {
   const developers = useRecoilValue(productContentState);
@@ -122,12 +123,8 @@ export default function Edit(props: any) {
         </div>
       </div>
       <div className="footer row">
-        <button className="btn1" type="submit">
-          Actualizar
-        </button>
-        <button onClick={deleteProduct} className="btn2">
-          Eliminar
-        </button>
+        <BlueButton type="submit">Actualizar</BlueButton>
+        <VioletButton onClick={deleteProduct}>Eliminar</VioletButton>
       </div>
       {error ? <WarningMessage title="Faltan datos" type="error" /> : null}
       {success ? (
