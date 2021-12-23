@@ -129,12 +129,14 @@ export const BlueLink = styled(LinkStyle)`
 `;
 
 export const List = styled.div`
-  overflow-y: auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  overflow-y: hiden;
   gap: 30px;
   padding: 30px;
+  display: flex;
+  overflow-x: auto;
+  flex-direction: row;
   @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
+    overflow-y: auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -142,8 +144,11 @@ export const List = styled.div`
     align-items: center;
   }
   @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
-    grid-template-columns: repeat(1, 1fr);
+    overflow-y: auto;
     padding: 15px;
-    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    align-items: center;
   }
 `;
