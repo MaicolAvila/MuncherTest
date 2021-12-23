@@ -2,6 +2,7 @@ import React, { FormEventHandler, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory, Link } from "react-router-dom";
 import { auth, registerWithEmailAndPassword } from "../../firebase";
+import "./SignUp.scss"
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -25,7 +26,7 @@ export default function SignUp() {
   };
 
   return (
-    <form className="Create column" onSubmit={login}>
+    <form className="SignUp column" onSubmit={login}>
       <div className="header">
         <div className="title">Registrar</div>
       </div>

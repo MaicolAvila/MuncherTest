@@ -1,0 +1,46 @@
+.SignIn {
+    gap: 30px;
+    display: flex;
+    align-items: center;
+    .header {
+      .title {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.125rem;
+        /* identical to box height */
+  
+        text-align: start;
+  
+        color: #455561;
+      }
+    }
+    .body {
+      width: 300px;
+      gap: 20px;
+      .input-div {
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        /* identical to box height */
+  
+        display: flex;
+        align-items: start;
+        text-align: start;
+  
+        color: #455561;
+        gap: 10px;
+      }
+    }
+  
+    .footer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      text-align: center;
+      gap: 15px;
+    }
+  }
+  

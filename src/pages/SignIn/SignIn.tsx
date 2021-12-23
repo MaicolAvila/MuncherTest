@@ -8,6 +8,7 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState } from "recoil";
 import authState from "../../state/authState";
+import "./SignIn.scss";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ export default function SignIn() {
   };
 
   return (
-    <form className="Create column" onSubmit={login}>
+    <form className="SignIn column" onSubmit={login}>
       <div className="header">
         <div className="title">Login</div>
       </div>
