@@ -9,6 +9,7 @@ import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
 import { db } from "../../firebase";
 import { Console } from "console";
+import SliderImages from "../SliderImages/SliderImages";
 
 export default function ProductItem(props: Product) {
   const { name, id, precio, images } = props;
@@ -16,7 +17,8 @@ export default function ProductItem(props: Product) {
   return (
     <Link to={`/update/${id}`} className="ProductItem">
       <div className="content-image">
-        <img src={images} style={{ width: "100%" }} alt="" />
+        <img src={images[0]} style={{ width: "100%" }} alt="" />
+        {/* <SliderImages images={images} /> */}
       </div>
       <div className="line"></div>
       <div className="content-description column">

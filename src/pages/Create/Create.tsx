@@ -1,8 +1,13 @@
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useState,
+  useCallback,
+} from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Create.scss";
 import { useSetRecoilState } from "recoil";
-
+import { useDropzone } from "react-dropzone";
 import { nanoid } from "nanoid";
 import WarningMessage from "../../components/WarningMessage/WarningMessage";
 import Product from "../../types/product";
@@ -10,6 +15,7 @@ import Images from "../../types/images";
 import { productContentState } from "../../state/productState";
 import { db, logout, storage } from "../../firebase";
 import { BlueButton, Label, Title, VioletLink } from "../../styles/styles";
+import DropZone from "../../components/DropZone/DropZone";
 
 export default function Create() {
   const [ref, setRef] = useState<any>();
@@ -17,10 +23,15 @@ export default function Create() {
     name: "",
     description: "",
     precio: "",
-    images: "",
+    images: [],
   });
 
+  const [listOfItemFileOrUrl, setListOfItemFileOrUrl] = useState<any>([]);
+
+  const [fileError, setFileError] = useState<string | undefined>(undefined);
+
   const [Imagen, setImagen] = useState<File>();
+  const [imageFileList, setImageFileList] = useState<File[]>([]);
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -29,8 +40,8 @@ export default function Create() {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setContent((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
-  const changeImagen = async (e: any) => {
-    await setImagen(e.target.files[0]);
+  const changeImagen = (files: any) => {
+    setImageFileList(files);
   };
 
   const setProduct = useSetRecoilState(productContentState);
@@ -52,18 +63,21 @@ export default function Create() {
     //   }, 2000);
     // }
     try {
-      console.log(Imagen);
-      if (Imagen) {
-        const newRef = storage.ref(`images`).child(Imagen.name);
-        await setRef(newRef);
-        await newRef.put(Imagen);
-        let urlImagen = await newRef.getDownloadURL();
+      if (imageFileList) {
+        const urlsImages = [];
+        for (let image of imageFileList) {
+          const newRef = storage.ref(`images`).child(image.name);
+          await setRef(newRef);
+          await newRef.put(image);
+          let urlImagen = await newRef.getDownloadURL();
+          urlsImages.push(urlImagen);
+        }
         const newProduct: Product = {
           id: nanoid(),
           name: content.name,
           description: content.description,
           precio: content.precio,
-          images: urlImagen,
+          images: urlsImages,
         };
         await db.collection("products").add(newProduct);
         history.replace("/");
@@ -109,7 +123,7 @@ export default function Create() {
         </div>
         <div className="input-div">
           <Label>Seleccionar imagen</Label>
-          <input type="file" name="imagen" onChange={changeImagen} />
+          <DropZone changeImagen={changeImagen} />
         </div>
       </div>
       <div className="footer row">

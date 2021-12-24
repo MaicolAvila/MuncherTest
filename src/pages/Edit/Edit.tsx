@@ -14,6 +14,7 @@ import Product from "../../types/product";
 import { productContentState } from "../../state/productState";
 import { db } from "../../firebase";
 import { BlueButton, VioletButton } from "../../styles/styles";
+import SliderImages from "../../components/SliderImages/SliderImages";
 
 export default function Edit(props: any) {
   const developers = useRecoilValue(productContentState);
@@ -22,7 +23,7 @@ export default function Edit(props: any) {
     name: "",
     description: "",
     precio: "",
-    images: "",
+    images: [],
   });
 
   const [error, setError] = useState(false);
@@ -100,7 +101,8 @@ export default function Edit(props: any) {
             />
           </div>
           <div className="content-image">
-            <img src={content.images} style={{ width: "100%" }} alt="" />
+            {/* <img src={content.images} style={{ width: "100%" }} alt="" /> */}
+            <SliderImages images={content.images} />
           </div>
         </div>
         <div className="body c2 column">
