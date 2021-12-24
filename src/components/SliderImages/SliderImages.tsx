@@ -24,7 +24,7 @@ const Slide = styled.div`
 export default function SliderImages(images: any) {
   const [ImagesList, setImagesList] = useState([]);
   const [Count, setCount] = useState(0);
-  const [activeLeft, setActiveLeft] = useState(false);
+  const [activeLeft, setActiveLeft] = useState(true);
   const [activeRight, setActiveRight] = useState(true);
 
   useEffect(() => {

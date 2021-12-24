@@ -4,9 +4,7 @@ import { Label } from "../../styles/styles";
 
 export default function DropZone({
   listOfUrlOrFiles = [],
-  allowedTypes = [],
   maxFiles = 3,
-  maxFileSize = 1024,
   changeImagen = (files: any) => {},
 }) {
   const [fileError, setFileError] = useState<string | undefined>(undefined);
@@ -36,7 +34,7 @@ export default function DropZone({
 
       changeImagen(listOfUrlOrFilesCopy);
     },
-    [listOfUrlOrFiles, allowedTypes, maxFileSize, maxFiles]
+    [listOfUrlOrFiles, maxFiles]
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -44,10 +42,11 @@ export default function DropZone({
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the files here ...</p>
+        <p>Dejalas por aqui ...</p>
       ) : (
         <Label>
-          Arrastra {maxFiles} imagenes aqui, o as click para seleccionarlas
+          Arrastra maximo {maxFiles} imagenes aqui, o as click para
+          seleccionarlas
         </Label>
       )}
     </div>

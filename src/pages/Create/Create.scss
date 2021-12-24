@@ -15,8 +15,9 @@
     }
   }
   .body {
-    width: 300px;
     gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     .input-div {
       display: flex;
       flex-direction: column;
