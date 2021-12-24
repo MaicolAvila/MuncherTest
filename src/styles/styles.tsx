@@ -129,19 +129,20 @@ export const BlueLink = styled(LinkStyle)`
 `;
 
 export const List = styled.div`
-  overflow-y: hiden;
-  gap: 30px;
+  overflow-y: auto;
+  gap: 10px;
   padding: 30px;
   display: flex;
   overflow-x: auto;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
     overflow-y: auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    align-items: center;
   }
   @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
     overflow-y: auto;
