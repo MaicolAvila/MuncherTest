@@ -21,53 +21,67 @@ const Slide = styled.div`
   }
 `;
 
-const ArrowLeft = styled(IcoLeft)`
-  cursor: pointer;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
-  }
-  @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
-  }
-`;
-
-const ArrowRight = styled(IcoRight)`
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
-  }
-  @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
-  }
-`;
-
 export default function SliderImages(images: any) {
   const [ImagesList, setImagesList] = useState([]);
   const [Count, setCount] = useState(0);
+  const [activeLeft, setActiveLeft] = useState(false);
+  const [activeRight, setActiveRight] = useState(true);
 
   useEffect(() => {
     console.log(images.images);
     setImagesList(images.images);
   }, [ImagesList]);
 
+  useEffect(() => {
+    if (Count > 0) {
+      setActiveLeft(true);
+    } else {
+      setActiveLeft(false);
+    }
+    if (Count < ImagesList.length - 1) {
+      setActiveRight(true);
+    } else {
+      setActiveRight(false);
+    }
+  }, [Count, activeLeft, activeRight]);
+
   const beforeImage = () => {
     if (Count > 0) setCount(Count - 1);
   };
 
   const nextImage = () => {
-    console.log("intent");
-    console.log(Count);
-    console.log(ImagesList);
-    if (Count < ImagesList.length) setCount(Count + 1);
+    if (Count < ImagesList.length - 1) setCount(Count + 1);
   };
+
+  const ArrowLeft = styled(IcoLeft)`
+    cursor: ${activeLeft ? "pointer" : "no-drop"};
+    position: absolute;
+    left: 0;
+    top: 50%;
+    opacity: ${activeLeft ? "1" : "0.5"};
+    @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
+    }
+    @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
+    }
+  `;
+
+  const ArrowRight = styled(IcoRight)`
+    cursor: ${activeRight ? "pointer" : "no-drop"};
+    position: absolute;
+    right: 0;
+    top: 50%;
+    opacity: ${activeRight ? "1" : "0.5"};
+    @media (min-width: 0) and (max-width: ${breakpoint_mobile_small}) {
+    }
+    @media (min-width: ${breakpoint_mobile_small}) and (max-width: ${breakpoint_mobile_big}) {
+    }
+  `;
 
   return (
     <Slide>
       <ArrowLeft onClick={beforeImage} />
       <img style={{ width: "80%" }} src={ImagesList[Count]} alt="" />
-      <ArrowRight onClick={nextImage} style={{ cursor: "pointer" }} />
+      <ArrowRight onClick={nextImage} />
     </Slide>
   );
 }
